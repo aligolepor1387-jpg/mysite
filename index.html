@@ -3,310 +3,107 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>سایت من</title>
+<title>نماور | طراحی لوگو</title>
 <style>
   * { margin: 0; padding: 0; box-sizing: border-box; }
-
   body {
     font-family: Tahoma, sans-serif;
     min-height: 100vh;
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%);
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
     background-attachment: fixed;
     color: #fff;
-    overflow-x: hidden;
   }
-
-  /* حباب‌های تزئینی پس‌زمینه */
   .bubble {
-    position: fixed;
-    border-radius: 50%;
-    filter: blur(80px);
-    opacity: 0.5;
-    z-index: 0;
+    position: fixed; border-radius: 50%; filter: blur(80px); opacity: 0.5; z-index: 0;
     animation: float 15s infinite ease-in-out;
   }
   .bubble1 { width: 300px; height: 300px; background: #ff6ec4; top: -100px; right: -100px; }
   .bubble2 { width: 250px; height: 250px; background: #7873f5; bottom: -80px; left: -80px; animation-delay: 5s; }
-  .bubble3 { width: 200px; height: 200px; background: #4ade80; top: 40%; left: 20%; animation-delay: 10s; }
+  @keyframes float { 0%, 100% { transform: translate(0, 0); } 50% { transform: translate(30px, -30px); } }
 
-  @keyframes float {
-    0%, 100% { transform: translate(0, 0); }
-    50% { transform: translate(30px, -30px); }
-  }
-
-  /* هدر شیشه‌ای */
   header {
-    position: sticky;
-    top: 0;
-    z-index: 100;
-    padding: 15px 25px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    background: rgba(255, 255, 255, 0.1);
-    backdrop-filter: blur(20px);
-    -webkit-backdrop-filter: blur(20px);
-    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+    position: sticky; top: 0; z-index: 100; padding: 15px 25px;
+    display: flex; justify-content: space-between; align-items: center;
+    background: rgba(255,255,255,0.1); backdrop-filter: blur(20px);
+    border-bottom: 1px solid rgba(255,255,255,0.2);
   }
-  .logo {
-    font-size: 20px;
-    font-weight: bold;
-    color: #fff;
-    text-shadow: 0 0 20px rgba(255,255,255,0.5);
-  }
-  nav {
-    display: flex;
-    gap: 20px;
-  }
-  nav a {
-    color: rgba(255,255,255,0.9);
-    text-decoration: none;
-    font-size: 15px;
-    transition: all 0.3s;
-    padding: 8px 12px;
-    border-radius: 10px;
-  }
-  nav a:hover {
-    background: rgba(255,255,255,0.15);
-    color: #fff;
-  }
+  .logo { font-size: 20px; font-weight: bold; }
+  nav a { color: rgba(255,255,255,0.9); text-decoration: none; margin-right: 20px; font-size: 15px; }
+  nav a:hover { color: #fff; }
 
-  /* بخش اصلی */
-  .hero {
-    position: relative;
-    z-index: 1;
-    text-align: center;
-    padding: 80px 20px 60px;
-  }
-  .hero h1 {
-    font-size: 46px;
-    margin-bottom: 20px;
-    text-shadow: 0 0 30px rgba(255,255,255,0.4);
-  }
-  .hero p {
-    font-size: 18px;
-    line-height: 2;
-    color: rgba(255,255,255,0.85);
-    margin-bottom: 40px;
-    max-width: 600px;
-    margin-left: auto;
-    margin-right: auto;
-  }
-
-  /* دکمه شیشه‌ای */
+  .hero { position: relative; z-index: 1; text-align: center; padding: 100px 20px 80px; }
+  .hero h1 { font-size: 46px; margin-bottom: 25px; text-shadow: 0 0 30px rgba(255,255,255,0.4); }
+  .hero p { font-size: 18px; line-height: 2; color: rgba(255,255,255,0.85); margin-bottom: 40px; max-width: 650px; margin-left: auto; margin-right: auto; }
   .btn {
-    display: inline-block;
-    padding: 16px 50px;
-    background: rgba(255, 255, 255, 0.2);
-    backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px);
-    border: 1px solid rgba(255, 255, 255, 0.3);
-    color: #fff;
-    text-decoration: none;
-    border-radius: 50px;
-    font-weight: bold;
-    font-size: 17px;
-    transition: all 0.4s;
-    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+    display: inline-block; padding: 18px 55px; background: rgba(255,255,255,0.2);
+    backdrop-filter: blur(10px); border: 1px solid rgba(255,255,255,0.3);
+    color: #fff; text-decoration: none; border-radius: 50px; font-weight: bold; font-size: 18px;
+    transition: all 0.4s; box-shadow: 0 8px 32px rgba(0,0,0,0.1); cursor: pointer;
   }
-  .btn:hover {
-    background: rgba(255, 255, 255, 0.35);
-    transform: translateY(-5px);
-    box-shadow: 0 15px 40px rgba(255, 255, 255, 0.3);
-  }
+  .btn:hover { background: rgba(255,255,255,0.35); transform: translateY(-5px); }
 
-  /* کارت‌های شیشه‌ای */
-  .cards {
-    position: relative;
-    z-index: 1;
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 25px;
-    padding: 40px 20px 60px;
-    max-width: 1100px;
-    margin: 0 auto;
+  .features {
+    position: relative; z-index: 1;
+    display: flex; flex-wrap: wrap; justify-content: center; gap: 25px;
+    padding: 40px 20px 80px; max-width: 1000px; margin: 0 auto;
   }
-  .card {
-    background: rgba(255, 255, 255, 0.1);
-    backdrop-filter: blur(20px);
-    -webkit-backdrop-filter: blur(20px);
-    border: 1px solid rgba(255, 255, 255, 0.2);
-    border-radius: 24px;
-    padding: 35px 25px;
-    width: 280px;
-    text-align: center;
-    transition: all 0.4s;
-    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
-    text-decoration: none;
-    color: #fff;
-    display: block;
+  .feature {
+    background: rgba(255,255,255,0.1); backdrop-filter: blur(20px);
+    border: 1px solid rgba(255,255,255,0.2); border-radius: 20px;
+    padding: 30px 25px; width: 260px; text-align: center;
   }
-  .card:hover {
-    transform: translateY(-10px) scale(1.03);
-    background: rgba(255, 255, 255, 0.18);
-    border-color: rgba(255, 255, 255, 0.5);
-    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.2);
-  }
-  .card .icon {
-    font-size: 45px;
-    margin-bottom: 18px;
-    display: block;
-  }
-  .card h3 {
-    font-size: 20px;
-    margin-bottom: 12px;
-  }
-  .card p {
-    color: rgba(255,255,255,0.8);
-    font-size: 14px;
-    line-height: 1.8;
-  }
+  .feature .icon { font-size: 40px; margin-bottom: 15px; display: block; }
+  .feature h3 { margin-bottom: 10px; font-size: 19px; }
+  .feature p { color: rgba(255,255,255,0.8); font-size: 14px; line-height: 1.8; }
 
-  /* بخش تماس با ما */
-  .contact-section {
-    position: relative;
-    z-index: 1;
-    text-align: center;
-    padding: 50px 20px 40px;
-  }
-  .contact-section h2 {
-    font-size: 32px;
-    margin-bottom: 20px;
-    text-shadow: 0 0 20px rgba(255,255,255,0.4);
-  }
-  .contact-section p {
-    color: rgba(255,255,255,0.85);
-    margin-bottom: 30px;
-    font-size: 16px;
-  }
-
-  /* شبکه‌های اجتماعی */
-  .socials {
-    position: relative;
-    z-index: 1;
-    display: flex;
-    justify-content: center;
-    flex-wrap: wrap;
-    gap: 18px;
-    padding: 30px 20px 60px;
-  }
-  .social-btn {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    padding: 14px 26px;
-    background: rgba(255, 255, 255, 0.12);
-    backdrop-filter: blur(15px);
-    -webkit-backdrop-filter: blur(15px);
-    border: 1px solid rgba(255, 255, 255, 0.25);
-    border-radius: 50px;
-    color: #fff;
-    text-decoration: none;
-    font-size: 15px;
-    transition: all 0.3s;
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
-  }
-  .social-btn:hover {
-    background: rgba(255, 255, 255, 0.3);
-    transform: translateY(-4px);
-    box-shadow: 0 10px 30px rgba(255, 255, 255, 0.3);
-  }
-
-  footer {
-    position: relative;
-    z-index: 1;
-    text-align: center;
-    padding: 25px;
-    color: rgba(255,255,255,0.7);
-    font-size: 13px;
-    border-top: 1px solid rgba(255,255,255,0.15);
-  }
+  footer { position: relative; z-index: 1; text-align: center; padding: 25px; color: rgba(255,255,255,0.7); font-size: 13px; border-top: 1px solid rgba(255,255,255,0.15); }
 
   @media (max-width: 600px) {
     .hero h1 { font-size: 32px; }
-    .hero p { font-size: 16px; }
-    header { flex-direction: column; gap: 12px; padding: 15px; }
-    nav a { font-size: 14px; padding: 6px 8px; }
-    .card { width: 100%; max-width: 320px; }
+    header { flex-direction: column; gap: 10px; }
+    nav a { margin: 0 8px; }
   }
 </style>
 </head>
 <body>
 
-  <!-- حباب‌های تزئینی -->
   <div class="bubble bubble1"></div>
   <div class="bubble bubble2"></div>
-  <div class="bubble bubble3"></div>
 
-  <!-- هدر -->
   <header>
-    <div class="logo">✦ سایت من</div>
+    <div class="logo">✦ نماور</div>
     <nav>
-      <a href="#home">خانه</a>
-      <a href="#about">درباره</a>
-      <a href="#services">خدمات</a>
-      <a href="#contact">تماس با ما</a>
+      <a href="index.html">خانه</a>
+      <a href="order.html">سفارش لوگو</a>
     </nav>
   </header>
 
-  <!-- بخش اصلی -->
-  <section class="hero" id="home">
-    <h1>به سایت من خوش آمدید</h1>
-    <p>اینجا جاییه که می‌تونی هر چیزی که می‌خوای بسازی. ساده، شیک و مدرن.</p>
-    <a href="#contact" class="btn">تماس با ما</a>
+  <section class="hero">
+    <h1>نماور | طراحی لوگوی اختصاصی</h1>
+    <p>برای کسب‌وکار خودت یک لوگوی حرفه‌ای و منحصربه‌فرد سفارش بده. طراحی مدرن، خلاقانه و مطابق با هویت برند تو.</p>
+    <a href="order.html" class="btn">🚀 سفارش طراحی لوگو</a>
   </section>
 
-  <!-- کارت‌ها -->
-  <section class="cards" id="services">
-    <a href="#contact" class="card">
-      <span class="icon">🚀</span>
-      <h3>سریع</h3>
-      <p>سایت من با سرعت بالا برای شما آماده شده است. کلیک کن و با ما در تماس باش.</p>
-    </a>
-    <a href="#about" class="card">
+  <section class="features">
+    <div class="feature">
+      <span class="icon">🎨</span>
+      <h3>طراحی اختصاصی</h3>
+      <p>هر لوگو مخصوص برند خودته، بدون کپی از طرح‌های آماده.</p>
+    </div>
+    <div class="feature">
+      <span class="icon">⚡</span>
+      <h3>تحویل سریع</h3>
+      <p>لوگوت رو توی کمترین زمان ممکن دریافت می‌کنی.</p>
+    </div>
+    <div class="feature">
       <span class="icon">💎</span>
-      <h3>شیک</h3>
-      <p>طراحی مدرن و چشم‌نواز با رنگ‌بندی حرفه‌ای و افکت‌های شیشه‌ای.</p>
-    </a>
-    <a href="#contact" class="card">
-      <span class="icon">📱</span>
-      <h3>ارتباط آسان</h3>
-      <p>از هر راهی که راحت‌تری با ما در تماس باش. ما همیشه پاسخگو هستیم.</p>
-    </a>
-  </section>
-
-  <!-- درباره -->
-  <section class="contact-section" id="about">
-    <h2>درباره من</h2>
-    <p>من علیرضا هستم و این سایت شخصی منه. اینجا می‌تونید با من در ارتباط باشید.</p>
-  </section>
-
-  <!-- بخش تماس با ما -->
-  <section class="contact-section" id="contact">
-    <h2>📬 تماس با ما</h2>
-    <p>برای ارتباط با من، از راه‌های زیر استفاده کنید:</p>
-    <a href="mailto:alialigolipour13871387@gmail.com" class="btn">✉️ ارسال ایمیل</a>
-  </section>
-
-  <!-- شبکه‌های اجتماعی -->
-  <section class="socials">
-    <a href="mailto:alialigolipour13871387@gmail.com" class="social-btn">
-      ✉️ ایمیل
-    </a>
-    <a href="https://instagram.com/" target="_blank" class="social-btn">
-      📷 اینستاگرام
-    </a>
-    <a href="https://t.me/" target="_blank" class="social-btn">
-      ✈️ تلگرام
-    </a>
-    <a href="https://wa.me/98" target="_blank" class="social-btn">
-      💬 واتساپ
-    </a>
+      <h3>کیفیت بالا</h3>
+      <p>طراحی حرفه‌ای با بالاترین کیفیت و فایل‌های مخصوص چاپ.</p>
+    </div>
   </section>
 
   <footer>
-    © ۱۴۰۳ - تمام حقوق محفوظ است
+    © ۱۴۰۵ - نماور | تمام حقوق محفوظ است
   </footer>
 
 </body>
