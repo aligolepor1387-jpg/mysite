@@ -5,39 +5,159 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>سایت من</title>
 <style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
   body {
     font-family: Tahoma, sans-serif;
-    background: #111;
+    background: linear-gradient(135deg, #0f0c29, #302b63, #24243e);
     color: #fff;
-    text-align: center;
-    padding: 50px 20px;
-    margin: 0;
+    min-height: 100vh;
   }
-  h1 {
-    color: gold;
-    font-size: 32px;
+  header {
+    padding: 20px 30px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid rgba(255,215,0,0.2);
   }
-  p {
-    font-size: 18px;
-    line-height: 2;
-  }
-  a {
-    display: inline-block;
-    margin-top: 20px;
-    padding: 12px 30px;
-    background: gold;
-    color: #111;
-    text-decoration: none;
-    border-radius: 8px;
+  .logo {
+    font-size: 22px;
     font-weight: bold;
+    color: #ffd700;
+  }
+  nav a {
+    color: #ccc;
+    text-decoration: none;
+    margin-right: 20px;
+    font-size: 15px;
+    transition: color 0.3s;
+  }
+  nav a:hover { color: #ffd700; }
+
+  .hero {
+    text-align: center;
+    padding: 80px 20px 60px;
+  }
+  .hero h1 {
+    font-size: 42px;
+    background: linear-gradient(45deg, #ffd700, #ffed4e);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    margin-bottom: 20px;
+  }
+  .hero p {
+    font-size: 18px;
+    color: #bbb;
+    line-height: 2;
+    margin-bottom: 35px;
+  }
+  .btn {
+    display: inline-block;
+    padding: 15px 45px;
+    background: linear-gradient(45deg, #ffd700, #ffed4e);
+    color: #1a1a2e;
+    text-decoration: none;
+    border-radius: 50px;
+    font-weight: bold;
+    font-size: 16px;
+    transition: transform 0.3s, box-shadow 0.3s;
+    box-shadow: 0 4px 20px rgba(255, 215, 0, 0.4);
+  }
+  .btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 30px rgba(255, 215, 0, 0.6);
+  }
+
+  .cards {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 25px;
+    padding: 40px 20px 80px;
+    max-width: 1000px;
+    margin: 0 auto;
+  }
+  .card {
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 215, 0, 0.2);
+    border-radius: 20px;
+    padding: 35px 25px;
+    width: 260px;
+    text-align: center;
+    backdrop-filter: blur(10px);
+    transition: transform 0.3s, border 0.3s;
+  }
+  .card:hover {
+    transform: translateY(-8px);
+    border-color: rgba(255, 215, 0, 0.6);
+  }
+  .card .icon {
+    font-size: 40px;
+    margin-bottom: 15px;
+  }
+  .card h3 {
+    color: #ffd700;
+    margin-bottom: 12px;
+    font-size: 19px;
+  }
+  .card p {
+    color: #aaa;
+    font-size: 14px;
+    line-height: 1.8;
+  }
+
+  footer {
+    text-align: center;
+    padding: 25px;
+    border-top: 1px solid rgba(255,215,0,0.2);
+    color: #666;
+    font-size: 13px;
+  }
+
+  @media (max-width: 600px) {
+    .hero h1 { font-size: 30px; }
+    header { flex-direction: column; gap: 15px; }
+    nav a { margin: 0 10px; }
   }
 </style>
 </head>
 <body>
 
-  <h1>سلام، این سایت منه</h1>
-  <p>اینجا می‌تونی هر چی می‌خوای بنویسی.</p>
-  <a href="#">تماس با من</a>
+  <header>
+    <div class="logo">✦ سایت من</div>
+    <nav>
+      <a href="#">خانه</a>
+      <a href="#">درباره</a>
+      <a href="#">تماس</a>
+    </nav>
+  </header>
+
+  <section class="hero">
+    <h1>به سایت من خوش آمدید</h1>
+    <p>اینجا جاییه که می‌تونی هر چیزی که می‌خوای بسازی.<br>ساده، شیک و مدرن.</p>
+    <a href="#" class="btn">شروع کنید</a>
+  </section>
+
+  <section class="cards">
+    <div class="card">
+      <div class="icon">🚀</div>
+      <h3>سریع</h3>
+      <p>سایت من با سرعت بالا برای شما آماده شده است.</p>
+    </div>
+    <div class="card">
+      <div class="icon">💎</div>
+      <h3>شیک</h3>
+      <p>طراحی مدرن و چشم‌نواز با رنگ‌بندی حرفه‌ای.</p>
+    </div>
+    <div class="card">
+      <div class="icon">📱</div>
+      <h3>واکنش‌گرا</h3>
+      <p>روی موبایل و کامپیوتر به بهترین شکل نمایش داده می‌شه.</p>
+    </div>
+  </section>
+
+  <footer>
+    © ۱۴۰۳ - تمام حقوق محفوظ است
+  </footer>
 
 </body>
 </html>
