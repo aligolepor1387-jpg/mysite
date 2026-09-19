@@ -3,107 +3,409 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>نماور | طراحی لوگو</title>
+<title>نماور | طراحی لوگوی اختصاصی</title>
 <style>
   * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+
   body {
-    font-family: Tahoma, sans-serif;
-    min-height: 100vh;
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-    background-attachment: fixed;
+    font-family: 'Tahoma', 'Segoe UI', Arial, sans-serif;
+    background: #0a0a0a;
     color: #fff;
+    direction: rtl;
+    overflow-x: hidden;
+    -webkit-font-smoothing: antialiased;
   }
-  .bubble {
-    position: fixed; border-radius: 50%; filter: blur(80px); opacity: 0.5; z-index: 0;
-    animation: float 15s infinite ease-in-out;
-  }
-  .bubble1 { width: 300px; height: 300px; background: #ff6ec4; top: -100px; right: -100px; }
-  .bubble2 { width: 250px; height: 250px; background: #7873f5; bottom: -80px; left: -80px; animation-delay: 5s; }
-  @keyframes float { 0%, 100% { transform: translate(0, 0); } 50% { transform: translate(30px, -30px); } }
 
+  /* ===== HEADER ===== */
   header {
-    position: sticky; top: 0; z-index: 100; padding: 15px 25px;
-    display: flex; justify-content: space-between; align-items: center;
-    background: rgba(255,255,255,0.1); backdrop-filter: blur(20px);
-    border-bottom: 1px solid rgba(255,255,255,0.2);
+    position: fixed;
+    top: 0; left: 0;
+    width: 100%;
+    padding: 18px 40px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: rgba(10, 10, 10, 0.85);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border-bottom: 1px solid rgba(77, 166, 255, 0.15);
+    z-index: 100;
   }
-  .logo { font-size: 20px; font-weight: bold; }
-  nav a { color: rgba(255,255,255,0.9); text-decoration: none; margin-right: 20px; font-size: 15px; }
-  nav a:hover { color: #fff; }
-
-  .hero { position: relative; z-index: 1; text-align: center; padding: 100px 20px 80px; }
-  .hero h1 { font-size: 46px; margin-bottom: 25px; text-shadow: 0 0 30px rgba(255,255,255,0.4); }
-  .hero p { font-size: 18px; line-height: 2; color: rgba(255,255,255,0.85); margin-bottom: 40px; max-width: 650px; margin-left: auto; margin-right: auto; }
-  .btn {
-    display: inline-block; padding: 18px 55px; background: rgba(255,255,255,0.2);
-    backdrop-filter: blur(10px); border: 1px solid rgba(255,255,255,0.3);
-    color: #fff; text-decoration: none; border-radius: 50px; font-weight: bold; font-size: 18px;
-    transition: all 0.4s; box-shadow: 0 8px 32px rgba(0,0,0,0.1); cursor: pointer;
+  .logo {
+    font-size: 22px;
+    font-weight: 600;
+    color: #fff;
+    letter-spacing: 2px;
   }
-  .btn:hover { background: rgba(255,255,255,0.35); transform: translateY(-5px); }
+  .logo span {
+    color: #4da6ff;
+    margin-right: 6px;
+  }
+  nav a {
+    color: rgba(255, 255, 255, 0.8);
+    text-decoration: none;
+    margin-right: 28px;
+    font-size: 15px;
+    transition: color 0.3s;
+  }
+  nav a:hover {
+    color: #4da6ff;
+  }
 
+  /* ===== HERO ===== */
+  .hero {
+    position: relative;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 120px 20px 80px;
+    background: radial-gradient(ellipse at center, #0a1929 0%, #000 70%);
+    text-align: center;
+    overflow: hidden;
+  }
+  .hero::before {
+    content: '';
+    position: absolute;
+    top: 50%; left: 50%;
+    width: 700px; height: 700px;
+    background: radial-gradient(circle, rgba(77, 166, 255, 0.2) 0%, transparent 60%);
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    animation: pulse 5s infinite ease-in-out;
+  }
+  @keyframes pulse {
+    0%, 100% { transform: translate(-50%, -50%) scale(1); opacity: 0.7; }
+    50% { transform: translate(-50%, -50%) scale(1.2); opacity: 1; }
+  }
+  .hero-content {
+    position: relative;
+    z-index: 2;
+    max-width: 800px;
+  }
+  .hero h1 {
+    font-size: 48px;
+    font-weight: 300;
+    line-height: 1.5;
+    margin-bottom: 25px;
+  }
+  .hero h1 strong {
+    color: #4da6ff;
+    font-weight: 700;
+  }
+  .hero p {
+    font-size: 18px;
+    color: #aaa;
+    line-height: 2;
+    margin-bottom: 45px;
+  }
+  .hero-btn {
+    display: inline-block;
+    padding: 18px 55px;
+    background: linear-gradient(135deg, #0066b1, #4da6ff);
+    color: #fff;
+    text-decoration: none;
+    border-radius: 50px;
+    font-size: 17px;
+    font-weight: 600;
+    transition: all 0.3s;
+    box-shadow: 0 8px 30px rgba(77, 166, 255, 0.5);
+  }
+  .hero-btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 15px 45px rgba(77, 166, 255, 0.8);
+  }
+
+  /* ===== FEATURES ===== */
   .features {
-    position: relative; z-index: 1;
-    display: flex; flex-wrap: wrap; justify-content: center; gap: 25px;
-    padding: 40px 20px 80px; max-width: 1000px; margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 25px;
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 100px 30px;
   }
   .feature {
-    background: rgba(255,255,255,0.1); backdrop-filter: blur(20px);
-    border: 1px solid rgba(255,255,255,0.2); border-radius: 20px;
-    padding: 30px 25px; width: 260px; text-align: center;
+    background: linear-gradient(135deg, #111, #1a1a1a);
+    border: 1px solid rgba(77, 166, 255, 0.2);
+    border-radius: 20px;
+    padding: 40px 30px;
+    text-align: center;
+    transition: all 0.4s;
   }
-  .feature .icon { font-size: 40px; margin-bottom: 15px; display: block; }
-  .feature h3 { margin-bottom: 10px; font-size: 19px; }
-  .feature p { color: rgba(255,255,255,0.8); font-size: 14px; line-height: 1.8; }
+  .feature:hover {
+    transform: translateY(-8px);
+    border-color: rgba(77, 166, 255, 0.6);
+    box-shadow: 0 20px 50px rgba(77, 166, 255, 0.2);
+  }
+  .feature-icon {
+    font-size: 45px;
+    margin-bottom: 20px;
+    display: block;
+  }
+  .feature h3 {
+    font-size: 20px;
+    color: #4da6ff;
+    margin-bottom: 15px;
+  }
+  .feature p {
+    font-size: 14px;
+    color: #999;
+    line-height: 1.9;
+  }
 
-  footer { position: relative; z-index: 1; text-align: center; padding: 25px; color: rgba(255,255,255,0.7); font-size: 13px; border-top: 1px solid rgba(255,255,255,0.15); }
+  /* ===== ORDER SECTION ===== */
+  .order-section {
+    padding: 100px 30px;
+    background: #0a0a0a;
+    border-top: 1px solid rgba(77, 166, 255, 0.15);
+  }
+  .order-wrapper {
+    max-width: 700px;
+    margin: 0 auto;
+  }
+  .section-title {
+    text-align: center;
+    font-size: 38px;
+    font-weight: 300;
+    margin-bottom: 15px;
+  }
+  .section-title strong {
+    color: #4da6ff;
+    font-weight: 700;
+  }
+  .section-subtitle {
+    text-align: center;
+    color: #777;
+    font-size: 15px;
+    margin-bottom: 50px;
+  }
 
-  @media (max-width: 600px) {
-    .hero h1 { font-size: 32px; }
-    header { flex-direction: column; gap: 10px; }
-    nav a { margin: 0 8px; }
+  .order-form {
+    background: linear-gradient(135deg, #111, #1a1a1a);
+    border: 1px solid rgba(77, 166, 255, 0.25);
+    border-radius: 24px;
+    padding: 50px 40px;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+  }
+  .form-group {
+    margin-bottom: 25px;
+  }
+  .form-group label {
+    display: block;
+    margin-bottom: 10px;
+    font-size: 14px;
+    color: #ccc;
+    font-weight: 500;
+  }
+  .form-group label .required {
+    color: #4da6ff;
+    margin-right: 4px;
+  }
+  .form-group input,
+  .form-group select,
+  .form-group textarea {
+    width: 100%;
+    padding: 15px 18px;
+    background: #0a0a0a;
+    border: 1.5px solid rgba(77, 166, 255, 0.25);
+    border-radius: 12px;
+    color: #fff;
+    font-family: inherit;
+    font-size: 15px;
+    transition: all 0.3s;
+  }
+  .form-group input:focus,
+  .form-group select:focus,
+  .form-group textarea:focus {
+    outline: none;
+    border-color: #4da6ff;
+    box-shadow: 0 0 0 3px rgba(77, 166, 255, 0.15);
+  }
+  .form-group input::placeholder,
+  .form-group textarea::placeholder {
+    color: #555;
+  }
+  .form-group select option {
+    background: #1a1a1a;
+    color: #fff;
+  }
+  .form-group textarea {
+    resize: vertical;
+    min-height: 120px;
+  }
+  .submit-btn {
+    width: 100%;
+    padding: 18px;
+    background: linear-gradient(135deg, #0066b1, #4da6ff);
+    border: none;
+    border-radius: 12px;
+    color: #fff;
+    font-family: inherit;
+    font-size: 17px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s;
+    margin-top: 15px;
+  }
+  .submit-btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 15px 40px rgba(77, 166, 255, 0.5);
+  }
+  .submit-btn:active {
+    transform: translateY(0);
+  }
+
+  /* ===== FOOTER ===== */
+  footer {
+    text-align: center;
+    padding: 40px 20px;
+    background: #000;
+    border-top: 1px solid rgba(77, 166, 255, 0.15);
+    color: #666;
+    font-size: 13px;
+  }
+  footer strong {
+    color: #4da6ff;
+  }
+
+  /* ===== RESPONSIVE ===== */
+  @media (max-width: 700px) {
+    header { padding: 15px 20px; }
+    nav a { margin-right: 15px; font-size: 13px; }
+    nav a:last-child { display: none; }
+
+    .hero h1 { font-size: 30px; }
+    .hero p { font-size: 16px; }
+    .hero-btn { padding: 16px 40px; font-size: 15px; }
+
+    .section-title { font-size: 26px; }
+    .order-form { padding: 35px 25px; }
+    .features { padding: 60px 20px; }
   }
 </style>
 </head>
 <body>
 
-  <div class="bubble bubble1"></div>
-  <div class="bubble bubble2"></div>
-
+  <!-- HEADER -->
   <header>
-    <div class="logo">✦ نماور</div>
+    <div class="logo"><span>✦</span>نماور</div>
     <nav>
-      <a href="index.html">خانه</a>
-      <a href="order.html">سفارش لوگو</a>
+      <a href="#order">سفارش لوگو</a>
+      <a href="#features">خدمات</a>
     </nav>
   </header>
 
+  <!-- HERO -->
   <section class="hero">
-    <h1>نماور | طراحی لوگوی اختصاصی</h1>
-    <p>برای کسب‌وکار خودت یک لوگوی حرفه‌ای و منحصربه‌فرد سفارش بده. طراحی مدرن، خلاقانه و مطابق با هویت برند تو.</p>
-    <a href="order.html" class="btn">🚀 سفارش طراحی لوگو</a>
+    <div class="hero-content">
+      <h1>طراحی <strong>لوگوی اختصاصی</strong><br>برای برند شما</h1>
+      <p>برای کسب‌وکار خودت یک لوگوی حرفه‌ای و منحصربه‌فرد سفارش بده.<br>طراحی مدرن، خلاقانه و مطابق با هویت برند تو.</p>
+      <a href="#order" class="hero-btn">🚀 سفارش طراحی لوگو</a>
+    </div>
   </section>
 
-  <section class="features">
+  <!-- FEATURES -->
+  <section class="features" id="features">
     <div class="feature">
-      <span class="icon">🎨</span>
+      <span class="feature-icon">🎨</span>
       <h3>طراحی اختصاصی</h3>
       <p>هر لوگو مخصوص برند خودته، بدون کپی از طرح‌های آماده.</p>
     </div>
     <div class="feature">
-      <span class="icon">⚡</span>
+      <span class="feature-icon">⚡</span>
       <h3>تحویل سریع</h3>
       <p>لوگوت رو توی کمترین زمان ممکن دریافت می‌کنی.</p>
     </div>
     <div class="feature">
-      <span class="icon">💎</span>
+      <span class="feature-icon">💎</span>
       <h3>کیفیت بالا</h3>
       <p>طراحی حرفه‌ای با بالاترین کیفیت و فایل‌های مخصوص چاپ.</p>
     </div>
   </section>
 
+  <!-- ORDER SECTION -->
+  <section class="order-section" id="order">
+    <div class="order-wrapper">
+      <h2 class="section-title">📝 فرم <strong>سفارش طراحی لوگو</strong></h2>
+      <p class="section-subtitle">اطلاعات زیر رو پر کن تا با تو تماس بگیریم</p>
+
+      <form class="order-form" action="https://formsubmit.co/alialigolipour13871387@gmail.com" method="POST">
+
+        <!-- Hidden settings -->
+        <input type="hidden" name="_subject" value="🎨 سفارش جدید طراحی لوگو - نماور">
+        <input type="hidden" name="_captcha" value="false">
+        <input type="hidden" name="_template" value="table">
+
+        <div class="form-group">
+          <label><span class="required">*</span>نام و نام خانوادگی</label>
+          <input type="text" name="نام" placeholder="مثلاً: علی محمدی" required>
+        </div>
+
+        <div class="form-group">
+          <label><span class="required">*</span>شماره تماس</label>
+          <input type="tel" name="شماره تماس" placeholder="09123456789" required>
+        </div>
+
+        <div class="form-group">
+          <label><span class="required">*</span>ایمیل</label>
+          <input type="email" name="ایمیل" placeholder="email@example.com" required>
+        </div>
+
+        <div class="form-group">
+          <label><span class="required">*</span>نام برند / کسب‌وکار</label>
+          <input type="text" name="نام برند" placeholder="مثلاً: کافه رستوران بهار" required>
+        </div>
+
+        <div class="form-group">
+          <label>حوزه فعالیت</label>
+          <input type="text" name="حوزه فعالیت" placeholder="مثلاً: پوشاک، رستوران، فناوری">
+        </div>
+
+        <div class="form-group">
+          <label>سبک مورد علاقه</label>
+          <select name="سبک">
+            <option value="">انتخاب کنید...</option>
+            <option value="مینیمال و ساده">مینیمال و ساده</option>
+            <option value="مدرن و خلاقانه">مدرن و خلاقانه</option>
+            <option value="کلاسیک و لوکس">کلاسیک و لوکس</option>
+            <option value="شاد و رنگی">شاد و رنگی</option>
+            <option value="تایپوگرافی (متن‌محور)">تایپوگرافی (متن‌محور)</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label>رنگ‌های مورد علاقه</label>
+          <input type="text" name="رنگ‌ها" placeholder="مثلاً: آبی و طلایی">
+        </div>
+
+        <div class="form-group">
+          <label>بودجه تقریبی</label>
+          <select name="بودجه">
+            <option value="">انتخاب کنید...</option>
+            <option value="۵۰۰ هزار تا ۱ میلیون تومان">۵۰۰ هزار تا ۱ میلیون تومان</option>
+            <option value="۱ تا ۲ میلیون تومان">۱ تا ۲ میلیون تومان</option>
+            <option value="۲ تا ۵ میلیون تومان">۲ تا ۵ میلیون تومان</option>
+            <option value="بیشتر از ۵ میلیون تومان">بیشتر از ۵ میلیون تومان</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label>توضیحات بیشتر</label>
+          <textarea name="توضیحات" placeholder="درباره برندت، مخاطب هدفت، و هر چیزی که فکر می‌کنی کمک می‌کنه بنویس..."></textarea>
+        </div>
+
+        <button type="submit" class="submit-btn">🚀 ارسال سفارش</button>
+
+      </form>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
   <footer>
-    © ۱۴۰۵ - نماور | تمام حقوق محفوظ است
+    © ۱۴۰۵ <strong>نماور</strong> | تمام حقوق محفوظ است
   </footer>
 
 </body>
