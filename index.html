@@ -664,7 +664,7 @@
       <p class="section-subtitle fade-up">تجربه‌ی مشتریانی که با نماور کار کردن</p>
 
       <div class="testimonials-grid" id="testimonialsList">
-        <!-- نظرات از Google Sheets لود می‌شن -->
+        <!-- نظرات نمونه (نمایش داده می‌شن حتی اگه API کار نکنه) -->
         <div class="testimonial fade-up">
           <div class="testimonial-stars">★★★★★</div>
           <p class="testimonial-text">"طراحی لوگوی کافه‌مون خیلی خوب شد. دقیقاً همون چیزی بود که می‌خواستم. سرعت تحویل هم عالی بود."</p>
@@ -852,7 +852,7 @@
   <div class="scroll-top" id="scrollTop" onclick="scrollTo({top: 0, behavior: 'smooth'})">↑</div>
 
   <script>
-    // Mobile menu
+    // ===== Mobile menu =====
     const mobileToggle = document.getElementById('mobileToggle');
     const nav = document.getElementById('nav');
     mobileToggle.addEventListener('click', () => {
@@ -866,7 +866,7 @@
       });
     });
 
-    // Header hide on scroll
+    // ===== Header hide on scroll =====
     const header = document.getElementById('header');
     let lastScroll = 0;
     window.addEventListener('scroll', () => {
@@ -878,12 +878,11 @@
       }
       lastScroll = scrollY;
 
-      // Scroll top button
       const scrollTop = document.getElementById('scrollTop');
       scrollTop.classList.toggle('visible', scrollY > 500);
     });
 
-    // Fade up on scroll
+    // ===== Fade up on scroll =====
     const observer = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
         if (entry.isIntersecting) {
@@ -891,15 +890,80 @@
         }
       });
     }, { threshold: 0.1 });
-
     document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
 
-    // Review form (فعلاً فقط نمایش پیام)
-    document.getElementById('reviewForm').addEventListener('submit', (e) => {
+    // ===== REVIEWS API =====
+    const API_URL = 'https://script.google.com/macros/s/AKfycbzsc0kFuvy2l10o2g14H28EeMlC2XJZxgyq9-hjm668BJCcEEjCvIUKKfGTjC6tEQ3l/exec';
+
+    // Load approved reviews on page load
+    async function loadReviews() {
+      try {
+        const response = await fetch(API_URL);
+        const data = await response.json();
+        if (!data.success || !data.reviews || data.reviews.length === 0) return;
+
+        const container = document.getElementById('testimonialsList');
+        const newReviews = data.reviews.map(r => `
+          <div class="testimonial fade-up visible">
+            <div class="testimonial-stars">${'★'.repeat(parseInt(r.rating))}${'☆'.repeat(5 - parseInt(r.rating))}</div>
+            <p class="testimonial-text">"${escapeHtml(String(r.review))}"</p>
+            <div class="testimonial-author">
+              <div class="testimonial-avatar">${escapeHtml(String(r.name).charAt(0))}</div>
+              <div class="testimonial-info">
+                <h4>${escapeHtml(String(r.name))}</h4>
+                <span>مشتری نماور</span>
+              </div>
+            </div>
+          </div>
+        `).join('');
+
+        container.insertAdjacentHTML('afterbegin', newReviews);
+      } catch (err) {
+        console.log('Reviews API not available yet:', err.message);
+      }
+    }
+
+    // Submit new review
+    document.getElementById('reviewForm').addEventListener('submit', async (e) => {
       e.preventDefault();
-      alert('✅ ممنون از نظرت! بعد از تأیید مدیر، نظرت نمایش داده می‌شه.');
-      e.target.reset();
+      const name = document.getElementById('reviewName').value.trim();
+      const rating = document.getElementById('reviewRating').value;
+      const review = document.getElementById('reviewText').value.trim();
+      const btn = e.target.querySelector('button');
+      const originalText = btn.textContent;
+
+      if (!name || !review) return;
+
+      btn.textContent = 'در حال ارسال...';
+      btn.disabled = true;
+
+      try {
+        await fetch(API_URL, {
+          method: 'POST',
+          mode: 'no-cors',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ name, rating, review })
+        });
+
+        alert('✅ ممنون از نظرت! بعد از تأیید مدیر، نظرت نمایش داده می‌شه.');
+        e.target.reset();
+      } catch (err) {
+        alert('❌ خطا در ارسال. لطفاً دوباره تلاش کن.');
+      } finally {
+        btn.textContent = originalText;
+        btn.disabled = false;
+      }
     });
+
+    // Escape HTML for safety
+    function escapeHtml(str) {
+      const div = document.createElement('div');
+      div.textContent = str;
+      return div.innerHTML;
+    }
+
+    // Load reviews
+    loadReviews();
   </script>
 
 </body>
