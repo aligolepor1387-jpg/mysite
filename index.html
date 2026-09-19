@@ -664,7 +664,6 @@
       <p class="section-subtitle fade-up">تجربه‌ی مشتریانی که با نماور کار کردن</p>
 
       <div class="testimonials-grid" id="testimonialsList">
-        <!-- نظرات نمونه (نمایش داده می‌شن حتی اگه API کار نکنه) -->
         <div class="testimonial fade-up">
           <div class="testimonial-stars">★★★★★</div>
           <p class="testimonial-text">"طراحی لوگوی کافه‌مون خیلی خوب شد. دقیقاً همون چیزی بود که می‌خواستم. سرعت تحویل هم عالی بود."</p>
@@ -702,7 +701,6 @@
         </div>
       </div>
 
-      <!-- Review Form -->
       <div class="review-form-wrapper">
         <h3>✍️ نظر خودت رو بنویس</h3>
         <form id="reviewForm">
@@ -845,14 +843,11 @@
     </div>
   </footer>
 
-  <!-- WHATSAPP FLOAT -->
   <a href="https://wa.me/98" target="_blank" class="whatsapp-float" title="تماس واتساپ">💬</a>
-
-  <!-- SCROLL TOP -->
   <div class="scroll-top" id="scrollTop" onclick="scrollTo({top: 0, behavior: 'smooth'})">↑</div>
 
   <script>
-    // ===== Mobile menu =====
+    // Mobile menu
     const mobileToggle = document.getElementById('mobileToggle');
     const nav = document.getElementById('nav');
     mobileToggle.addEventListener('click', () => {
@@ -866,7 +861,7 @@
       });
     });
 
-    // ===== Header hide on scroll =====
+    // Header hide on scroll
     const header = document.getElementById('header');
     let lastScroll = 0;
     window.addEventListener('scroll', () => {
@@ -882,7 +877,7 @@
       scrollTop.classList.toggle('visible', scrollY > 500);
     });
 
-    // ===== Fade up on scroll =====
+    // Fade up
     const observer = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
         if (entry.isIntersecting) {
@@ -893,9 +888,8 @@
     document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
 
     // ===== REVIEWS API =====
-    const API_URL = 'https://script.google.com/macros/s/AKfycbzsc0kFuvy2l10o2g14H28EeMlC2XJZxgyq9-hjm668BJCcEEjCvIUKKfGTjC6tEQ3l/exec';
+    const API_URL = 'https://script.google.com/macros/s/AKfycbz0BaPs7V8w2WUMDRaakqkos3h0JHMkCMbdAnY3MYfmv9qXh5rM5K04fI9VSvNBnzwf/exec';
 
-    // Load approved reviews on page load
     async function loadReviews() {
       try {
         const response = await fetch(API_URL);
@@ -919,11 +913,10 @@
 
         container.insertAdjacentHTML('afterbegin', newReviews);
       } catch (err) {
-        console.log('Reviews API not available yet:', err.message);
+        console.log('Reviews API error:', err.message);
       }
     }
 
-    // Submit new review
     document.getElementById('reviewForm').addEventListener('submit', async (e) => {
       e.preventDefault();
       const name = document.getElementById('reviewName').value.trim();
@@ -955,14 +948,12 @@
       }
     });
 
-    // Escape HTML for safety
     function escapeHtml(str) {
       const div = document.createElement('div');
       div.textContent = str;
       return div.innerHTML;
     }
 
-    // Load reviews
     loadReviews();
   </script>
 
