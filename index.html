@@ -9,19 +9,13 @@
 <meta name="author" content="نماور">
 <meta name="theme-color" content="#0a0a0a">
 
-<!-- Open Graph -->
 <meta property="og:title" content="نماور | طراحی لوگوی اختصاصی">
 <meta property="og:description" content="طراحی لوگو، برندینگ، و هویت بصری اختصاصی برای کسب‌وکار شما.">
 <meta property="og:type" content="website">
-<meta property="og:image" content="https://aligolepor1387-jpg.github.io/mysite/og-image.jpg">
 
-<!-- Twitter -->
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="نماور | طراحی لوگوی اختصاصی">
 <meta name="twitter:description" content="طراحی لوگو، برندینگ، و هویت بصری اختصاصی.">
-
-<!-- PWA Manifest -->
-<link rel="manifest" href="data:application/json,%7B%22name%22%3A%22%D9%86%D9%85%D8%A7%D9%88%D8%B1%22%2C%22short_name%22%3A%22%D9%86%D9%85%D8%A7%D9%88%D8%B1%22%2C%22start_url%22%3A%22.%2F%22%2C%22display%22%3A%22standalone%22%2C%22background_color%22%3A%22%230a0a0a%22%2C%22theme_color%22%3A%22%234da6ff%22%7D">
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -67,7 +61,7 @@
   }
   a, button, select, input, textarea { cursor: none; }
 
-  /* ===== CUSTOM CURSOR ===== */
+  /* CUSTOM CURSOR */
   .cursor {
     position: fixed;
     width: 12px; height: 12px;
@@ -94,7 +88,7 @@
     body, a, button, select, input, textarea { cursor: auto; }
   }
 
-  /* ===== PROGRESS BAR ===== */
+  /* PROGRESS BAR */
   .progress-bar {
     position: fixed;
     top: 0; right: 0;
@@ -106,7 +100,7 @@
     box-shadow: 0 0 10px rgba(77, 166, 255, 0.8);
   }
 
-  /* ===== PARTICLES ===== */
+  /* PARTICLES */
   #particles {
     position: fixed;
     top: 0; left: 0;
@@ -116,7 +110,7 @@
     opacity: 0.4;
   }
 
-  /* ===== HEADER ===== */
+  /* HEADER */
   header {
     position: fixed; top: 0; left: 0;
     width: 100%; padding: 18px 40px;
@@ -132,14 +126,33 @@
     background: rgba(255, 255, 255, 0.75);
   }
   header.hidden { transform: translateY(-100%); }
-  .logo { font-size: 24px; font-weight: 700; letter-spacing: 2px; cursor: pointer; }
+  .logo {
+    font-size: 24px; font-weight: 700; letter-spacing: 2px;
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+    padding: 5px 0;
+  }
   .logo span { color: var(--accent); margin-left: 8px; }
-  nav { display: flex; gap: 24px; align-items: center; }
+  .logo::after {
+    content: '';
+    position: absolute;
+    top: 0; left: -100%;
+    width: 50%; height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(77, 166, 255, 0.5), transparent);
+    animation: logoShine 3s infinite;
+  }
+  @keyframes logoShine {
+    0% { left: -100%; }
+    100% { left: 200%; }
+  }
+  nav { display: flex; gap: 22px; align-items: center; }
   nav a {
     color: var(--text-secondary);
     text-decoration: none; font-size: 14px;
     transition: color 0.3s;
     position: relative;
+    white-space: nowrap;
   }
   nav a::after {
     content: '';
@@ -153,7 +166,7 @@
   nav a:hover { color: var(--accent); }
   .nav-cta {
     background: linear-gradient(135deg, var(--accent-dark), var(--accent));
-    color: #fff !important; padding: 10px 24px;
+    color: #fff !important; padding: 10px 22px;
     border-radius: 50px; font-weight: 600; font-size: 13px !important;
     transition: all 0.3s !important;
   }
@@ -192,7 +205,7 @@
   .mobile-toggle.active span:nth-child(2) { opacity: 0; }
   .mobile-toggle.active span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
 
-  /* ===== HERO ===== */
+  /* HERO */
   .hero {
     position: relative; min-height: 100vh;
     display: flex; align-items: center; justify-content: center;
@@ -291,7 +304,6 @@
     transform: translateY(-3px);
   }
 
-  /* ===== SECTIONS ===== */
   section { position: relative; z-index: 1; padding: 100px 30px; }
   .container { max-width: 1200px; margin: 0 auto; }
   .section-title {
@@ -304,7 +316,7 @@
     font-size: 15px; margin-bottom: 60px; letter-spacing: 1px;
   }
 
-  /* ===== FEATURES ===== */
+  /* FEATURES */
   .features-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
@@ -344,7 +356,7 @@
   .feature h3 { font-size: 20px; color: var(--accent); margin-bottom: 15px; }
   .feature p { font-size: 14px; color: var(--text-secondary); line-height: 1.9; }
 
-  /* ===== STEPS ===== */
+  /* STEPS */
   .steps-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
@@ -363,7 +375,7 @@
   .step h3 { font-size: 18px; color: var(--accent); margin-bottom: 12px; }
   .step p { font-size: 13px; color: var(--text-secondary); line-height: 1.8; }
 
-  /* ===== PRICING ===== */
+  /* PRICING */
   .pricing-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
@@ -429,7 +441,7 @@
     color: #fff; border-color: transparent;
   }
 
-  /* ===== CALCULATOR ===== */
+  /* CALCULATOR */
   .calc-wrapper {
     max-width: 700px; margin: 0 auto;
     background: var(--bg-secondary);
@@ -481,7 +493,7 @@
     font-size: 14px; color: var(--text-muted);
   }
 
-  /* ===== COMPARISON TABLE ===== */
+  /* COMPARISON TABLE */
   .comparison-table-wrapper {
     max-width: 900px; margin: 0 auto;
     overflow-x: auto;
@@ -513,7 +525,7 @@
   .comparison-table .check { color: var(--accent); font-weight: 700; }
   .comparison-table .cross { color: #555; }
 
-  /* ===== FAQ ===== */
+  /* FAQ */
   .faq-list { max-width: 800px; margin: 0 auto; }
   .faq-item {
     background: var(--bg-secondary);
@@ -560,7 +572,7 @@
     padding: 0 25px 22px;
   }
 
-  /* ===== TESTIMONIALS ===== */
+  /* TESTIMONIALS */
   .testimonials-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
@@ -644,7 +656,7 @@
     box-shadow: 0 10px 30px var(--glow);
   }
 
-  /* ===== ABOUT ===== */
+  /* ABOUT */
   .about-content {
     display: grid;
     grid-template-columns: 1fr 1.5fr;
@@ -673,7 +685,7 @@
   }
   .about-stat span { font-size: 12px; color: var(--text-muted); letter-spacing: 1px; }
 
-  /* ===== ORDER FORM ===== */
+  /* ORDER FORM */
   .order-wrapper { max-width: 700px; margin: 0 auto; }
   .order-form {
     background: var(--bg-secondary);
@@ -721,7 +733,7 @@
     box-shadow: 0 15px 40px var(--glow);
   }
 
-  /* ===== SHARE BUTTONS ===== */
+  /* SHARE */
   .share-section {
     text-align: center;
     padding: 50px 30px;
@@ -757,7 +769,7 @@
   .share-btn.twitter:hover { background: #1da1f2; color: #fff; border-color: #1da1f2; }
   .share-btn.instagram:hover { background: linear-gradient(45deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888); color: #fff; border-color: #dc2743; }
 
-  /* ===== FOOTER ===== */
+  /* FOOTER */
   footer {
     background: var(--bg-secondary);
     border-top: 1px solid var(--border);
@@ -783,7 +795,7 @@
   }
   .footer-copy strong { color: var(--accent); }
 
-  /* ===== SCROLL TOP ===== */
+  /* SCROLL TOP */
   .scroll-top {
     position: fixed; bottom: 25px; right: 25px;
     width: 50px; height: 50px; border-radius: 50%;
@@ -801,14 +813,14 @@
     transform: translateY(-3px);
   }
 
-  /* ===== ANIMATIONS ===== */
+  /* FADE UP */
   .fade-up {
     opacity: 0; transform: translateY(40px);
     transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
   }
   .fade-up.visible { opacity: 1; transform: translateY(0); }
 
-  /* ===== RESPONSIVE ===== */
+  /* RESPONSIVE */
   @media (max-width: 768px) {
     header { padding: 15px 20px; }
     .mobile-toggle { display: flex; }
@@ -865,6 +877,7 @@
       <a href="#pricing">قیمت‌ها</a>
       <a href="#calculator">ماشین‌حساب</a>
       <a href="#comparison">مقایسه</a>
+      <a href="tools.html">ابزارها</a>
       <a href="#faq">سوالات</a>
       <a href="#testimonials">نظرات</a>
       <a href="#order" class="nav-cta">سفارش لوگو</a>
@@ -887,7 +900,7 @@
       <p>طراحی لوگو، برندینگ، و هویت بصری اختصاصی برای کسب‌وکارت. از ایده تا اجرا، کنارت هستیم.</p>
       <div class="hero-btns">
         <a href="#order" class="btn-primary">🚀 سفارش طراحی لوگو</a>
-        <a href="#pricing" class="btn-secondary">مشاهده قیمت‌ها</a>
+        <a href="tools.html" class="btn-secondary">✨ ابزارهای نماور</a>
       </div>
     </div>
   </section>
@@ -1378,6 +1391,7 @@
       <a href="#pricing">قیمت‌ها</a>
       <a href="#calculator">ماشین‌حساب</a>
       <a href="#comparison">مقایسه</a>
+      <a href="tools.html">ابزارها</a>
       <a href="#faq">سوالات</a>
       <a href="#testimonials">نظرات</a>
       <a href="#about">درباره</a>
@@ -1391,7 +1405,7 @@
   <div class="scroll-top" id="scrollTop">↑</div>
 
   <script>
-    // ===== CUSTOM CURSOR =====
+    // CUSTOM CURSOR
     const cursor = document.getElementById('cursor');
     const cursorFollower = document.getElementById('cursorFollower');
 
@@ -1417,7 +1431,7 @@
       });
     });
 
-    // ===== TYPING ANIMATION =====
+    // TYPING ANIMATION
     const text = "هویت بصری برندت رو با نماور بساز";
     const typedTextEl = document.getElementById('typedText');
     let charIndex = 0;
@@ -1437,7 +1451,7 @@
     }
     setTimeout(typeText, 500);
 
-    // ===== THEME TOGGLE =====
+    // THEME TOGGLE
     const themeToggle = document.getElementById('themeToggle');
     const html = document.documentElement;
     const savedTheme = localStorage.getItem('theme') || 'dark';
@@ -1452,7 +1466,7 @@
       themeToggle.textContent = newTheme === 'dark' ? '☀️' : '🌙';
     });
 
-    // ===== PROGRESS BAR =====
+    // PROGRESS BAR
     const progressBar = document.getElementById('progressBar');
     window.addEventListener('scroll', () => {
       const scrollTop = window.scrollY;
@@ -1461,7 +1475,7 @@
       progressBar.style.width = progress + '%';
     });
 
-    // ===== PARTICLES =====
+    // PARTICLES
     const canvas = document.getElementById('particles');
     const ctx = canvas.getContext('2d');
     let particles = [];
@@ -1505,7 +1519,7 @@
     }
     animateParticles();
 
-    // ===== Mobile menu =====
+    // MOBILE MENU
     const mobileToggle = document.getElementById('mobileToggle');
     const nav = document.getElementById('nav');
     mobileToggle.addEventListener('click', () => {
@@ -1519,7 +1533,7 @@
       });
     });
 
-    // ===== Header hide on scroll =====
+    // HEADER HIDE ON SCROLL
     const header = document.getElementById('header');
     let lastScroll = 0;
     window.addEventListener('scroll', () => {
@@ -1534,12 +1548,12 @@
       scrollTop.classList.toggle('visible', scrollY > 500);
     });
 
-    // ===== Scroll to top =====
+    // SCROLL TOP
     document.getElementById('scrollTop').addEventListener('click', () => {
       window.scrollTo({ top: 0, behavior: 'smooth' });
     });
 
-    // ===== Fade up =====
+    // FADE UP
     const observer = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
         if (entry.isIntersecting) entry.target.classList.add('visible');
@@ -1547,7 +1561,7 @@
     }, { threshold: 0.1 });
     document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
 
-    // ===== Counter animation =====
+    // COUNTER ANIMATION
     function animateCounter(el) {
       const target = parseInt(el.getAttribute('data-count'));
       const hasPercent = el.textContent.includes('٪');
@@ -1570,7 +1584,7 @@
     }, { threshold: 0.5 });
     document.querySelectorAll('[data-count]').forEach(el => counterObserver.observe(el));
 
-    // ===== CALCULATOR =====
+    // CALCULATOR
     const calcPackage = document.getElementById('calcPackage');
     const calcRevisions = document.getElementById('calcRevisions');
     const calcExtras = document.getElementById('calcExtras');
@@ -1588,7 +1602,7 @@
     calcExtras.addEventListener('change', updateCalculator);
     updateCalculator();
 
-    // ===== FAQ Accordion =====
+    // FAQ ACCORDION
     document.querySelectorAll('.faq-question').forEach(q => {
       q.addEventListener('click', () => {
         const item = q.parentElement;
@@ -1598,7 +1612,7 @@
       });
     });
 
-    // ===== SHARE FUNCTIONS =====
+    // SHARE FUNCTIONS
     function sharePage(platform) {
       const url = encodeURIComponent(window.location.href);
       const text = encodeURIComponent('نماور - طراحی لوگوی اختصاصی و برندینگ حرفه‌ای');
@@ -1629,7 +1643,7 @@
       });
     }
 
-    // ===== REVIEWS API =====
+    // REVIEWS API
     const API_URL = 'https://script.google.com/macros/s/AKfycbwfXhnEL4WgXApDZFSK-RPIRdlqmciePLquSCjLqyrRfX6oXXAaFUpXhnC20H19EkpQ5A/exec';
 
     async function loadReviews() {
@@ -1692,13 +1706,6 @@
     }
 
     loadReviews();
-
-    // ===== PWA INSTALL =====
-    let deferredPrompt;
-    window.addEventListener('beforeinstallprompt', (e) => {
-      e.preventDefault();
-      deferredPrompt = e;
-    });
   </script>
 
 </body>
