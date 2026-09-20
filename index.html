@@ -4,16 +4,29 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>نماور | طراحی لوگوی اختصاصی</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 <style>
   * { margin: 0; padding: 0; box-sizing: border-box; }
   html { scroll-behavior: smooth; }
   body {
-    font-family: 'Tahoma', 'Segoe UI', Arial, sans-serif;
+    font-family: 'Vazirmatn', 'Tahoma', 'Segoe UI', Arial, sans-serif;
     background: #0a0a0a;
     color: #fff;
     direction: rtl;
     overflow-x: hidden;
     -webkit-font-smoothing: antialiased;
+  }
+
+  /* ===== PARTICLES ===== */
+  #particles {
+    position: fixed;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    z-index: 0;
+    pointer-events: none;
+    opacity: 0.4;
   }
 
   header {
@@ -73,10 +86,16 @@
     border: 1px solid rgba(77, 166, 255, 0.3);
     border-radius: 50px; color: #4da6ff;
     font-size: 13px; letter-spacing: 1px; margin-bottom: 25px;
+    animation: fadeIn 1s;
+  }
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(-10px); }
+    to { opacity: 1; transform: translateY(0); }
   }
   .hero h1 {
     font-size: 52px; font-weight: 300;
-    line-height: 1.4; margin-bottom: 25px;
+    line-height: 1.5; margin-bottom: 25px;
+    animation: fadeIn 1s 0.2s backwards;
   }
   .hero h1 strong {
     background: linear-gradient(135deg, #4da6ff, #0066b1);
@@ -88,8 +107,12 @@
     font-size: 18px; color: #aaa; line-height: 2;
     margin-bottom: 45px; max-width: 650px;
     margin-left: auto; margin-right: auto;
+    animation: fadeIn 1s 0.4s backwards;
   }
-  .hero-btns { display: flex; gap: 15px; justify-content: center; flex-wrap: wrap; }
+  .hero-btns {
+    display: flex; gap: 15px; justify-content: center; flex-wrap: wrap;
+    animation: fadeIn 1s 0.6s backwards;
+  }
   .btn-primary {
     display: inline-block; padding: 18px 45px;
     background: linear-gradient(135deg, #0066b1, #4da6ff);
@@ -230,8 +253,7 @@
   .testimonials-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 25px;
-    margin-bottom: 50px;
+    gap: 25px; margin-bottom: 50px;
   }
   .testimonial {
     background: linear-gradient(135deg, #111, #1a1a1a);
@@ -331,7 +353,10 @@
     line-height: 2.2; margin-bottom: 20px;
   }
   .about-stats { display: flex; gap: 40px; margin-top: 30px; }
-  .about-stat h3 { font-size: 32px; color: #4da6ff; margin-bottom: 5px; }
+  .about-stat h3 {
+    font-size: 32px; color: #4da6ff; margin-bottom: 5px;
+    font-weight: 700;
+  }
   .about-stat span { font-size: 12px; color: #777; letter-spacing: 1px; }
 
   .order-wrapper { max-width: 700px; margin: 0 auto; }
@@ -437,7 +462,10 @@
     transition: all 0.3s; cursor: pointer;
   }
   .scroll-top.visible { opacity: 1; visibility: visible; }
-  .scroll-top:hover { background: #4da6ff; color: #000; }
+  .scroll-top:hover {
+    background: #4da6ff; color: #000;
+    transform: translateY(-3px);
+  }
 
   .fade-up {
     opacity: 0; transform: translateY(40px);
@@ -485,8 +513,10 @@
 </head>
 <body>
 
+  <canvas id="particles"></canvas>
+
   <header id="header">
-    <div class="logo" onclick="scrollTo({top: 0, behavior: 'smooth'})">
+    <div class="logo" onclick="window.scrollTo({top: 0, behavior: 'smooth'})">
       <span>✦</span>نماور
     </div>
     <nav id="nav">
@@ -707,15 +737,15 @@
           </p>
           <div class="about-stats">
             <div class="about-stat">
-              <h3>۵۰+</h3>
+              <h3 data-count="50">۰</h3>
               <span>پروژه موفق</span>
             </div>
             <div class="about-stat">
-              <h3>۳ سال</h3>
-              <span>تجربه</span>
+              <h3 data-count="3">۰</h3>
+              <span>سال تجربه</span>
             </div>
             <div class="about-stat">
-              <h3>۱۰۰٪</h3>
+              <h3 data-count="100">۰٪</h3>
               <span>رضایت مشتری</span>
             </div>
           </div>
@@ -804,10 +834,56 @@
   </footer>
 
   <a href="https://wa.me/98" target="_blank" class="whatsapp-float" title="تماس واتساپ">💬</a>
-  <div class="scroll-top" id="scrollTop" onclick="scrollTo({top: 0, behavior: 'smooth'})">↑</div>
+  <div class="scroll-top" id="scrollTop">↑</div>
 
   <script>
-    // Mobile menu
+    // ===== PARTICLES =====
+    const canvas = document.getElementById('particles');
+    const ctx = canvas.getContext('2d');
+    let particles = [];
+
+    function resizeCanvas() {
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+    }
+    resizeCanvas();
+    window.addEventListener('resize', resizeCanvas);
+
+    function createParticles() {
+      particles = [];
+      const count = window.innerWidth < 768 ? 30 : 60;
+      for (let i = 0; i < count; i++) {
+        particles.push({
+          x: Math.random() * canvas.width,
+          y: Math.random() * canvas.height,
+          r: Math.random() * 2 + 0.5,
+          dx: (Math.random() - 0.5) * 0.3,
+          dy: (Math.random() - 0.5) * 0.3,
+          opacity: Math.random() * 0.5 + 0.2
+        });
+      }
+    }
+    createParticles();
+
+    function animateParticles() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      particles.forEach(p => {
+        ctx.beginPath();
+        ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+        ctx.fillStyle = `rgba(77, 166, 255, ${p.opacity})`;
+        ctx.fill();
+
+        p.x += p.dx;
+        p.y += p.dy;
+
+        if (p.x < 0 || p.x > canvas.width) p.dx *= -1;
+        if (p.y < 0 || p.y > canvas.height) p.dy *= -1;
+      });
+      requestAnimationFrame(animateParticles);
+    }
+    animateParticles();
+
+    // ===== Mobile menu =====
     const mobileToggle = document.getElementById('mobileToggle');
     const nav = document.getElementById('nav');
     mobileToggle.addEventListener('click', () => {
@@ -821,7 +897,7 @@
       });
     });
 
-    // Header hide on scroll
+    // ===== Header hide on scroll =====
     const header = document.getElementById('header');
     let lastScroll = 0;
     window.addEventListener('scroll', () => {
@@ -837,7 +913,13 @@
       scrollTop.classList.toggle('visible', scrollY > 500);
     });
 
-    // Fade up
+    // ===== Scroll to top =====
+    const scrollTopBtn = document.getElementById('scrollTop');
+    scrollTopBtn.addEventListener('click', () => {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+
+    // ===== Fade up on scroll =====
     const observer = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
         if (entry.isIntersecting) {
@@ -846,6 +928,32 @@
       });
     }, { threshold: 0.1 });
     document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+
+    // ===== Counter animation =====
+    function animateCounter(el) {
+      const target = parseInt(el.getAttribute('data-count'));
+      const suffix = el.textContent.includes('٪') ? '٪' : (target === 50 ? '+' : '');
+      let current = 0;
+      const step = target / 50;
+      const timer = setInterval(() => {
+        current += step;
+        if (current >= target) {
+          current = target;
+          clearInterval(timer);
+        }
+        el.textContent = Math.floor(current) + suffix;
+      }, 30);
+    }
+
+    const counterObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting && !entry.target.dataset.done) {
+          entry.target.dataset.done = 'true';
+          animateCounter(entry.target);
+        }
+      });
+    }, { threshold: 0.5 });
+    document.querySelectorAll('[data-count]').forEach(el => counterObserver.observe(el));
 
     // ===== REVIEWS API =====
     const API_URL = 'https://script.google.com/macros/s/AKfycbwfXhnEL4WgXApDZFSK-RPIRdlqmciePLquSCjLqyrRfX6oXXAaFUpXhnC20H19EkpQ5A/exec';
