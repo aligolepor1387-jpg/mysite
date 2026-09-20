@@ -3,11 +3,30 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>نماور | طراحی لوگوی اختصاصی</title>
-<meta name="description" content="نماور - طراحی لوگو، برندینگ، و هویت بصری حرفه‌ای. سفارش آنلاین لوگوی اختصاصی.">
+<title>نماور | طراحی لوگوی اختصاصی و برندینگ حرفه‌ای</title>
+<meta name="description" content="نماور - طراحی لوگو، برندینگ، و هویت بصری اختصاصی برای کسب‌وکار شما. سفارش آنلاین لوگوی حرفه‌ای با بهترین قیمت.">
+<meta name="keywords" content="طراحی لوگو, برندینگ, هویت بصری, نماور, طراحی لوگوی اختصاصی">
+<meta name="author" content="نماور">
+<meta name="theme-color" content="#0a0a0a">
+
+<!-- Open Graph -->
+<meta property="og:title" content="نماور | طراحی لوگوی اختصاصی">
+<meta property="og:description" content="طراحی لوگو، برندینگ، و هویت بصری اختصاصی برای کسب‌وکار شما.">
+<meta property="og:type" content="website">
+<meta property="og:image" content="https://aligolepor1387-jpg.github.io/mysite/og-image.jpg">
+
+<!-- Twitter -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="نماور | طراحی لوگوی اختصاصی">
+<meta name="twitter:description" content="طراحی لوگو، برندینگ، و هویت بصری اختصاصی.">
+
+<!-- PWA Manifest -->
+<link rel="manifest" href="data:application/json,%7B%22name%22%3A%22%D9%86%D9%85%D8%A7%D9%88%D8%B1%22%2C%22short_name%22%3A%22%D9%86%D9%85%D8%A7%D9%88%D8%B1%22%2C%22start_url%22%3A%22.%2F%22%2C%22display%22%3A%22standalone%22%2C%22background_color%22%3A%22%230a0a0a%22%2C%22theme_color%22%3A%22%234da6ff%22%7D">
+
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
 <style>
   :root {
     --bg-primary: #0a0a0a;
@@ -35,7 +54,7 @@
   }
 
   * { margin: 0; padding: 0; box-sizing: border-box; }
-  html { scroll-behavior: smooth; }
+  html { scroll-behavior: smooth; scroll-padding-top: 80px; }
   body {
     font-family: 'Vazirmatn', 'Tahoma', sans-serif;
     background: var(--bg-primary);
@@ -44,6 +63,35 @@
     overflow-x: hidden;
     -webkit-font-smoothing: antialiased;
     transition: background 0.4s, color 0.4s;
+    cursor: none;
+  }
+  a, button, select, input, textarea { cursor: none; }
+
+  /* ===== CUSTOM CURSOR ===== */
+  .cursor {
+    position: fixed;
+    width: 12px; height: 12px;
+    background: var(--accent);
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 99999;
+    transition: transform 0.1s;
+    box-shadow: 0 0 20px var(--accent), 0 0 40px var(--accent);
+    mix-blend-mode: difference;
+  }
+  .cursor-follower {
+    position: fixed;
+    width: 40px; height: 40px;
+    border: 1.5px solid var(--accent);
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 99998;
+    transition: transform 0.3s ease-out, width 0.3s, height 0.3s;
+    opacity: 0.5;
+  }
+  @media (max-width: 768px) {
+    .cursor, .cursor-follower { display: none; }
+    body, a, button, select, input, textarea { cursor: auto; }
   }
 
   /* ===== PROGRESS BAR ===== */
@@ -86,19 +134,30 @@
   header.hidden { transform: translateY(-100%); }
   .logo { font-size: 24px; font-weight: 700; letter-spacing: 2px; cursor: pointer; }
   .logo span { color: var(--accent); margin-left: 8px; }
-  nav { display: flex; gap: 28px; align-items: center; }
+  nav { display: flex; gap: 24px; align-items: center; }
   nav a {
     color: var(--text-secondary);
-    text-decoration: none; font-size: 15px;
+    text-decoration: none; font-size: 14px;
     transition: color 0.3s;
+    position: relative;
   }
+  nav a::after {
+    content: '';
+    position: absolute;
+    bottom: -5px; right: 0;
+    width: 0; height: 2px;
+    background: var(--accent);
+    transition: width 0.3s;
+  }
+  nav a:hover::after { width: 100%; }
   nav a:hover { color: var(--accent); }
   .nav-cta {
     background: linear-gradient(135deg, var(--accent-dark), var(--accent));
     color: #fff !important; padding: 10px 24px;
-    border-radius: 50px; font-weight: 600; font-size: 14px !important;
+    border-radius: 50px; font-weight: 600; font-size: 13px !important;
     transition: all 0.3s !important;
   }
+  .nav-cta::after { display: none; }
   .nav-cta:hover {
     transform: translateY(-2px);
     box-shadow: 0 8px 20px var(--glow);
@@ -176,7 +235,7 @@
   .hero h1 {
     font-size: 52px; font-weight: 300;
     line-height: 1.5; margin-bottom: 25px;
-    animation: fadeIn 1s 0.2s backwards;
+    min-height: 1.5em;
   }
   .hero h1 strong {
     background: linear-gradient(135deg, var(--accent), var(--accent-dark));
@@ -184,15 +243,26 @@
     -webkit-text-fill-color: transparent;
     background-clip: text; font-weight: 700;
   }
+  .typing-cursor {
+    display: inline-block;
+    width: 3px;
+    height: 1em;
+    background: var(--accent);
+    animation: blink 1s infinite;
+    vertical-align: middle;
+    margin-right: 5px;
+  }
+  @keyframes blink {
+    0%, 50% { opacity: 1; }
+    51%, 100% { opacity: 0; }
+  }
   .hero p {
     font-size: 18px; color: var(--text-secondary); line-height: 2;
     margin-bottom: 45px; max-width: 650px;
     margin-left: auto; margin-right: auto;
-    animation: fadeIn 1s 0.4s backwards;
   }
   .hero-btns {
     display: flex; gap: 15px; justify-content: center; flex-wrap: wrap;
-    animation: fadeIn 1s 0.6s backwards;
   }
   .btn-primary {
     display: inline-flex; align-items: center; gap: 10px;
@@ -268,8 +338,7 @@
     background: linear-gradient(135deg, var(--accent-dark), var(--accent));
     border-radius: 20px;
     display: flex; align-items: center; justify-content: center;
-    font-size: 32px;
-    color: #fff;
+    font-size: 32px; color: #fff;
     box-shadow: 0 10px 30px var(--glow);
   }
   .feature h3 { font-size: 20px; color: var(--accent); margin-bottom: 15px; }
@@ -412,6 +481,85 @@
     font-size: 14px; color: var(--text-muted);
   }
 
+  /* ===== COMPARISON TABLE ===== */
+  .comparison-table-wrapper {
+    max-width: 900px; margin: 0 auto;
+    overflow-x: auto;
+    background: var(--bg-secondary);
+    border: 1.5px solid var(--border);
+    border-radius: 20px;
+    padding: 20px;
+  }
+  .comparison-table {
+    width: 100%;
+    border-collapse: collapse;
+    min-width: 600px;
+  }
+  .comparison-table th,
+  .comparison-table td {
+    padding: 18px 20px;
+    text-align: right;
+    border-bottom: 1px solid var(--border);
+    font-size: 14px;
+  }
+  .comparison-table th {
+    color: var(--accent);
+    font-weight: 600;
+    font-size: 15px;
+    background: rgba(77, 166, 255, 0.05);
+  }
+  .comparison-table tr:last-child td { border-bottom: none; }
+  .comparison-table td:first-child { color: var(--text-secondary); }
+  .comparison-table .check { color: var(--accent); font-weight: 700; }
+  .comparison-table .cross { color: #555; }
+
+  /* ===== FAQ ===== */
+  .faq-list { max-width: 800px; margin: 0 auto; }
+  .faq-item {
+    background: var(--bg-secondary);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    margin-bottom: 15px;
+    overflow: hidden;
+    transition: all 0.3s;
+  }
+  .faq-item:hover { border-color: var(--border-hover); }
+  .faq-question {
+    padding: 22px 25px;
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 16px;
+    font-weight: 600;
+    color: var(--text-primary);
+    transition: color 0.3s;
+    user-select: none;
+  }
+  .faq-question:hover { color: var(--accent); }
+  .faq-icon {
+    color: var(--accent);
+    font-size: 24px;
+    font-weight: 300;
+    transition: transform 0.3s;
+    flex-shrink: 0;
+    margin-right: 15px;
+  }
+  .faq-item.open .faq-icon { transform: rotate(45deg); }
+  .faq-answer {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.4s ease, padding 0.4s ease;
+    padding: 0 25px;
+    color: var(--text-secondary);
+    font-size: 14px;
+    line-height: 2;
+  }
+  .faq-item.open .faq-answer {
+    max-height: 500px;
+    padding: 0 25px 22px;
+  }
+
   /* ===== TESTIMONIALS ===== */
   .testimonials-grid {
     display: grid;
@@ -525,38 +673,6 @@
   }
   .about-stat span { font-size: 12px; color: var(--text-muted); letter-spacing: 1px; }
 
-  /* ===== COMPARISON TABLE ===== */
-  .comparison-table-wrapper {
-    max-width: 900px; margin: 0 auto;
-    overflow-x: auto;
-    background: var(--bg-secondary);
-    border: 1.5px solid var(--border);
-    border-radius: 20px;
-    padding: 20px;
-  }
-  .comparison-table {
-    width: 100%;
-    border-collapse: collapse;
-    min-width: 600px;
-  }
-  .comparison-table th,
-  .comparison-table td {
-    padding: 18px 20px;
-    text-align: right;
-    border-bottom: 1px solid var(--border);
-    font-size: 14px;
-  }
-  .comparison-table th {
-    color: var(--accent);
-    font-weight: 600;
-    font-size: 15px;
-    background: rgba(77, 166, 255, 0.05);
-  }
-  .comparison-table tr:last-child td { border-bottom: none; }
-  .comparison-table td:first-child { color: var(--text-secondary); }
-  .comparison-table .check { color: var(--accent); font-weight: 700; }
-  .comparison-table .cross { color: #555; }
-
   /* ===== ORDER FORM ===== */
   .order-wrapper { max-width: 700px; margin: 0 auto; }
   .order-form {
@@ -604,6 +720,42 @@
     transform: translateY(-3px);
     box-shadow: 0 15px 40px var(--glow);
   }
+
+  /* ===== SHARE BUTTONS ===== */
+  .share-section {
+    text-align: center;
+    padding: 50px 30px;
+    background: rgba(77, 166, 255, 0.02);
+    border-top: 1px solid var(--border);
+  }
+  .share-section h3 {
+    font-size: 20px; margin-bottom: 25px;
+    color: var(--text-secondary);
+  }
+  .share-buttons {
+    display: flex; gap: 15px;
+    justify-content: center; flex-wrap: wrap;
+  }
+  .share-btn {
+    width: 50px; height: 50px;
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    text-decoration: none;
+    font-size: 22px;
+    transition: all 0.3s;
+    border: 1.5px solid var(--border);
+    background: var(--bg-secondary);
+    color: var(--text-primary);
+  }
+  .share-btn:hover {
+    transform: translateY(-5px);
+    border-color: var(--accent);
+    box-shadow: 0 10px 25px var(--glow);
+  }
+  .share-btn.telegram:hover { background: #0088cc; color: #fff; border-color: #0088cc; }
+  .share-btn.whatsapp:hover { background: #25d366; color: #fff; border-color: #25d366; }
+  .share-btn.twitter:hover { background: #1da1f2; color: #fff; border-color: #1da1f2; }
+  .share-btn.instagram:hover { background: linear-gradient(45deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888); color: #fff; border-color: #dc2743; }
 
   /* ===== FOOTER ===== */
   footer {
@@ -697,6 +849,9 @@
 </head>
 <body>
 
+  <div class="cursor" id="cursor"></div>
+  <div class="cursor-follower" id="cursorFollower"></div>
+
   <div class="progress-bar" id="progressBar"></div>
   <canvas id="particles"></canvas>
 
@@ -709,8 +864,9 @@
       <a href="#steps">مراحل کار</a>
       <a href="#pricing">قیمت‌ها</a>
       <a href="#calculator">ماشین‌حساب</a>
+      <a href="#comparison">مقایسه</a>
+      <a href="#faq">سوالات</a>
       <a href="#testimonials">نظرات</a>
-      <a href="#about">درباره</a>
       <a href="#order" class="nav-cta">سفارش لوگو</a>
     </nav>
     <div class="header-actions">
@@ -725,7 +881,9 @@
     <div class="mesh-gradient"></div>
     <div class="hero-content">
       <div class="hero-badge">✦ طراحی حرفه‌ای برندینگ</div>
-      <h1>هویت بصری برندت رو<br><strong>با نماور</strong> بساز</h1>
+      <h1>
+        <span id="typedText"></span><span class="typing-cursor"></span>
+      </h1>
       <p>طراحی لوگو، برندینگ، و هویت بصری اختصاصی برای کسب‌وکارت. از ایده تا اجرا، کنارت هستیم.</p>
       <div class="hero-btns">
         <a href="#order" class="btn-primary">🚀 سفارش طراحی لوگو</a>
@@ -965,7 +1123,76 @@
     </div>
   </section>
 
-  <section id="testimonials" style="background: rgba(77, 166, 255, 0.02);">
+  <section id="faq" style="background: rgba(77, 166, 255, 0.02);">
+    <div class="container">
+      <h2 class="section-title fade-up">سوالات <strong>متداول</strong></h2>
+      <p class="section-subtitle fade-up">پاسخ سوالات پرتکرار مشتریان</p>
+
+      <div class="faq-list">
+        <div class="faq-item fade-up">
+          <div class="faq-question">
+            <span>طراحی لوگو چقدر طول می‌کشه؟</span>
+            <span class="faq-icon">+</span>
+          </div>
+          <div class="faq-answer">
+            بسته به پکیج انتخابی، بین ۲ تا ۵ روز کاری. توی پکیج VIP، اولویت بالاتری داری و توی ۲ روز تحویل می‌گیری.
+          </div>
+        </div>
+
+        <div class="faq-item fade-up">
+          <div class="faq-question">
+            <span>چند بار می‌تونم لوگو رو اصلاح کنم؟</span>
+            <span class="faq-icon">+</span>
+          </div>
+          <div class="faq-answer">
+            توی پکیج پایه ۲ بار، حرفه‌ای ۳ بار، و VIP اصلاحات نامحدود. اصلاحات اضافی توی پکیج‌های پایه و حرفه‌ای، هر کدام ۲۰۰ هزار تومان هزینه داره.
+          </div>
+        </div>
+
+        <div class="faq-item fade-up">
+          <div class="faq-question">
+            <span>چه فایل‌هایی تحویل می‌گیرم؟</span>
+            <span class="faq-icon">+</span>
+          </div>
+          <div class="faq-answer">
+            همه پکیج‌ها فایل PNG با کیفیت بالا دارن. پکیج حرفه‌ای و VIP، فایل‌های JPG، PDF و SVG (وکتور) هم دارن. فایل وکتور برای بزرگ‌کردن بدون افت کیفیت مناسبه.
+          </div>
+        </div>
+
+        <div class="faq-item fade-up">
+          <div class="faq-question">
+            <span>پرداخت چطوریه؟</span>
+            <span class="faq-icon">+</span>
+          </div>
+          <div class="faq-answer">
+            بعد از ثبت سفارش و تأیید طرح اولیه، ۵۰٪ مبلغ به عنوان پیش‌پرداخت دریافت می‌شه. ۵۰٪ باقی‌مانده، موقع تحویل فایل نهایی پرداخت می‌شه.
+          </div>
+        </div>
+
+        <div class="faq-item fade-up">
+          <div class="faq-question">
+            <span>اگه از طرح راضی نباشم چی؟</span>
+            <span class="faq-icon">+</span>
+          </div>
+          <div class="faq-answer">
+            ما ۳ طرح اولیه برات آماده می‌کنیم. اگه هیچ‌کدوم رو نپسندی، می‌تونیم طرح جدید بسازیم یا بخشی از هزینه رو برگردونیم.
+          </div>
+        </div>
+
+        <div class="faq-item fade-up">
+          <div class="faq-question">
+            <span>می‌تونم نمونه‌کارهای قبلی رو ببینم؟</span>
+            <span class="faq-icon">+</span>
+          </div>
+          <div class="faq-answer">
+            بله، نمونه‌کارها به‌زودی توی سایت قرار می‌گیرن. فعلاً می‌تونی از طریق فرم سفارش درخواست بدی تا نمونه‌کارها رو برات بفرستیم.
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="testimonials">
     <div class="container">
       <h2 class="section-title fade-up">نظرات <strong>مشتریان</strong></h2>
       <p class="section-subtitle fade-up">تجربه‌ی مشتریانی که با نماور کار کردن</p>
@@ -1035,7 +1262,7 @@
     </div>
   </section>
 
-  <section id="about">
+  <section id="about" style="background: rgba(77, 166, 255, 0.02);">
     <div class="container">
       <div class="about-content">
         <div class="about-photo fade-up">ن</div>
@@ -1068,7 +1295,7 @@
     </div>
   </section>
 
-  <section id="order" style="background: rgba(77, 166, 255, 0.02);">
+  <section id="order">
     <div class="container">
       <div class="order-wrapper">
         <h2 class="section-title fade-up">📝 فرم <strong>سفارش طراحی لوگو</strong></h2>
@@ -1133,6 +1360,17 @@
     </div>
   </section>
 
+  <div class="share-section">
+    <h3>نماور رو با دوستانت به اشتراک بذار</h3>
+    <div class="share-buttons">
+      <a href="#" class="share-btn telegram" onclick="sharePage('telegram'); return false;" title="تلگرام">✈️</a>
+      <a href="#" class="share-btn whatsapp" onclick="sharePage('whatsapp'); return false;" title="واتساپ">💬</a>
+      <a href="#" class="share-btn twitter" onclick="sharePage('twitter'); return false;" title="توییتر">🐦</a>
+      <a href="#" class="share-btn instagram" onclick="sharePage('instagram'); return false;" title="اینستاگرام">📷</a>
+      <a href="#" class="share-btn" onclick="copyLink(); return false;" title="کپی لینک">🔗</a>
+    </div>
+  </div>
+
   <footer>
     <div class="footer-logo"><span>✦</span>نماور</div>
     <div class="footer-links">
@@ -1140,6 +1378,7 @@
       <a href="#pricing">قیمت‌ها</a>
       <a href="#calculator">ماشین‌حساب</a>
       <a href="#comparison">مقایسه</a>
+      <a href="#faq">سوالات</a>
       <a href="#testimonials">نظرات</a>
       <a href="#about">درباره</a>
       <a href="#order">سفارش</a>
@@ -1152,6 +1391,52 @@
   <div class="scroll-top" id="scrollTop">↑</div>
 
   <script>
+    // ===== CUSTOM CURSOR =====
+    const cursor = document.getElementById('cursor');
+    const cursorFollower = document.getElementById('cursorFollower');
+
+    document.addEventListener('mousemove', (e) => {
+      cursor.style.left = e.clientX + 'px';
+      cursor.style.top = e.clientY + 'px';
+      setTimeout(() => {
+        cursorFollower.style.left = e.clientX + 'px';
+        cursorFollower.style.top = e.clientY + 'px';
+      }, 80);
+    });
+
+    document.querySelectorAll('a, button, input, select, textarea, .pricing-card, .feature, .faq-question').forEach(el => {
+      el.addEventListener('mouseenter', () => {
+        cursor.style.transform = 'scale(2.5)';
+        cursorFollower.style.width = '70px';
+        cursorFollower.style.height = '70px';
+      });
+      el.addEventListener('mouseleave', () => {
+        cursor.style.transform = 'scale(1)';
+        cursorFollower.style.width = '40px';
+        cursorFollower.style.height = '40px';
+      });
+    });
+
+    // ===== TYPING ANIMATION =====
+    const text = "هویت بصری برندت رو با نماور بساز";
+    const typedTextEl = document.getElementById('typedText');
+    let charIndex = 0;
+    const boldStart = text.indexOf('نماور');
+    const boldEnd = boldStart + 'نماور'.length;
+
+    function typeText() {
+      if (charIndex < text.length) {
+        const current = text.substring(0, charIndex + 1);
+        const before = current.substring(0, boldStart);
+        const bold = current.substring(boldStart, Math.min(charIndex + 1, boldEnd));
+        const after = current.substring(boldEnd);
+        typedTextEl.innerHTML = before + (bold ? '<strong>' + bold + '</strong>' : '') + after;
+        charIndex++;
+        setTimeout(typeText, 80);
+      }
+    }
+    setTimeout(typeText, 500);
+
     // ===== THEME TOGGLE =====
     const themeToggle = document.getElementById('themeToggle');
     const html = document.documentElement;
@@ -1296,12 +1581,53 @@
       const revisions = parseInt(calcRevisions.value) || 0;
       const extras = parseFloat(calcExtras.value);
       const total = pkg + (revisions * 0.2) + extras;
-      calcTotal.textContent = total.toFixed(3).replace('.', '.');
+      calcTotal.textContent = total.toFixed(3);
     }
     calcPackage.addEventListener('change', updateCalculator);
     calcRevisions.addEventListener('input', updateCalculator);
     calcExtras.addEventListener('change', updateCalculator);
     updateCalculator();
+
+    // ===== FAQ Accordion =====
+    document.querySelectorAll('.faq-question').forEach(q => {
+      q.addEventListener('click', () => {
+        const item = q.parentElement;
+        const wasOpen = item.classList.contains('open');
+        document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('open'));
+        if (!wasOpen) item.classList.add('open');
+      });
+    });
+
+    // ===== SHARE FUNCTIONS =====
+    function sharePage(platform) {
+      const url = encodeURIComponent(window.location.href);
+      const text = encodeURIComponent('نماور - طراحی لوگوی اختصاصی و برندینگ حرفه‌ای');
+      let shareUrl = '';
+      switch (platform) {
+        case 'telegram':
+          shareUrl = `https://t.me/share/url?url=${url}&text=${text}`;
+          break;
+        case 'whatsapp':
+          shareUrl = `https://wa.me/?text=${text}%20${url}`;
+          break;
+        case 'twitter':
+          shareUrl = `https://twitter.com/intent/tweet?url=${url}&text=${text}`;
+          break;
+        case 'instagram':
+          alert('برای اشتراک‌گذاری در اینستاگرام، لینک رو کپی کن و توی استوری بذار.');
+          copyLink();
+          return;
+      }
+      window.open(shareUrl, '_blank');
+    }
+
+    function copyLink() {
+      navigator.clipboard.writeText(window.location.href).then(() => {
+        alert('✅ لینک کپی شد!');
+      }).catch(() => {
+        alert('لینک سایت: ' + window.location.href);
+      });
+    }
 
     // ===== REVIEWS API =====
     const API_URL = 'https://script.google.com/macros/s/AKfycbwfXhnEL4WgXApDZFSK-RPIRdlqmciePLquSCjLqyrRfX6oXXAaFUpXhnC20H19EkpQ5A/exec';
@@ -1366,6 +1692,13 @@
     }
 
     loadReviews();
+
+    // ===== PWA INSTALL =====
+    let deferredPrompt;
+    window.addEventListener('beforeinstallprompt', (e) => {
+      e.preventDefault();
+      deferredPrompt = e;
+    });
   </script>
 
 </body>
